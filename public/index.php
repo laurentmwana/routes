@@ -9,7 +9,7 @@ $route = new Router($_SERVER['REQUEST_URI']);
 
 
 $route->get('/', [new BlogModule(), 'index'], 'blog.index');
-$route->get('/contact', [new BlogModule(), 'contact'], 'blog.index');
+$route->get('/contact', [new BlogModule(), 'contact'], 'blog.contact');
 
 
 $route->run();

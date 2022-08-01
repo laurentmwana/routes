@@ -21,12 +21,18 @@ class Router {
     {
         $this->url = trim($url, '/');
     }
+    
 
     
     public function get (string $path, $callback, ?string $name): self
     {
         $route = new Route($path, $callback);
         if (!is_null($name)) {
+
+            if (isset($this->nameRoutes[$name])) {
+               throw new RouteException("Il y a une route qui porte ce nom ");
+            }
+
             $this->nameRoutes[$name] = $route;
         }
         
@@ -40,6 +46,12 @@ class Router {
         $route = new Route($path, $callback);
 
         if (!is_null($name)) {
+            $this->nameRoutes[$name] = $route;
+
+            if (isset($this->nameRoutes[$name])) {
+                throw new RouteException("Il y a une route qui porte ce nom ");
+            }
+             
             $this->nameRoutes[$name] = $route;
         }
         
